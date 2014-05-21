@@ -19,7 +19,7 @@
     		M4 = L.marker([-24.206, -58.535]).bindPopup("Marker 4"),
     		M5 = L.marker([47.040, 99.140]).bindPopup("Marker 5");
 
-        var map = L.map('map').setView([33.578, 3.515], 2);
+        var map = L.map('map', {zoomControl: false}).setView([33.578, 3.515], 2);
 
         var political = L.layerGroup([M1, M2, M3]),
         	economic = L.layerGroup([M4, M5]);
@@ -41,6 +41,20 @@
     		'fillOpacity': .8
 		};
 
+		var info = L.control();
+
+		info.onAdd = function (map) {
+		    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+		    this.update();
+		    return this._div;
+		};
+
+		info.update = function (props) {
+    		this._div.innerHTML = (props ?
+        	'<h4>' + props.SOVEREIGNT + '</h4>'
+        	: 'Hover over a country');
+		};
+
 		var geojson;
 
 		function highlightFeature(e) {
@@ -51,15 +65,17 @@
         		color: '#666',
         		dashArray: '',
         		fillColor: 'white',
-        		fillOpacity: 0.7
+        		fillOpacity: 0.7,
     		});
     		if (!L.Browser.ie && !L.Browser.opera) {
         		layer.bringToFront();
     		}
+    		info.update(layer.feature.properties);
 		}
 
     	function resetHighlight(e) {
 		    geojson.resetStyle(e.target);
+		    info.update();
 		}
 
 		function zoomToFeature(e) {
@@ -78,7 +94,7 @@
 			attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
 			subdomains: 'abcd',
 			minZoom: 0,
-			maxZoom: 20,
+			maxZoom: 20
 		}).addTo(map)
 
 		geojson = L.geoJson(countries, {
@@ -87,6 +103,8 @@
 		}).addTo(map);
 
 		L.control.layers(stories).addTo(map);
+
+		info.addTo(map);
 
 		map.dragging.disable();
 
