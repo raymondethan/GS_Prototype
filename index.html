@@ -6,107 +6,135 @@
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<link rel="stylesheet" href="leaflet/leaflet.css" />
 	<script src="leaflet/leaflet.js"></script>
-</head>
-<body>
-    <div id="map"></div>
+    <script type="text/javascript" src="functions.js"></script>
+    <script type="text/javascript" src="controls.js"></script>
     <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
     <script type="text/javascript" src="countries.js"></script>
+    <script type="text/javascript" scr="country-flags.js"></script>
+</head>
+<body>
+    <div id="layerToggle">
+        <form name="switches">
+            <label>SELECT STORIES ABOUT</label>
+            <label class="toggle" id="aidLabel">AID
+                <input class="checkbox" type="checkbox" name="aid" onclick="removeAid()">
+            </label>
+            <label class = "toggle" id="econ">DEVELOPMENT
+                <input class="checkbox" type="checkbox" name="economic" onclick="removeEcon()">
+            </label>
+            <label class="toggle" id="enviro">ENVIRONMENT
+                <input class="checkbox" type="checkbox" name="environment" onclick="removeEnviro()">
+            </label>
+            <label class="toggle" id="human_rights">HUMAN RIGHTS
+                <input class="checkbox" type="checkbox" name="hr" onclick="removeHR()">
+            </label>
+            <label class = "toggle" id="polit">POLITICS & SOCIETY
+                <input class="checkbox" type="checkbox" name="political" onclick="removePolit()">
+            </label>
+            <label class="toggle" id="seeAll">SELECT ALL STORIES
+                <input class="checkbox" type="submit" name="see_all" onclick="zoomOut()">
+            </label>
+        </form>
+    </div>
+    <div id="map"></div>
     <script>
 
-    	var M1 = L.marker([10.055, 37.792]).bindPopup("Marker 1"),
-    		M2 = L.marker([39.232, 31.289]).bindPopup("Marker 2"),
-    		M3 = L.marker([13.752, -89.121]).bindPopup("Marker 3"),
-    		M4 = L.marker([-24.206, -58.535]).bindPopup("Marker 4"),
-    		M5 = L.marker([47.040, 99.140]).bindPopup("Marker 5");
+        //The images used for the markers
+        var redCircle = L.icon({
+            iconUrl: 'leaflet/images/red_circle.png'
+        });
 
-        var map = L.map('map', {zoomControl: false}).setView([33.578, 3.515], 2);
+        var greenCircle = L.icon({
+            iconUrl: 'leaflet/images/green_circle.png'
+        });
+
+        var blueCircle = L.icon({
+            iconUrl: 'leaflet/images/blue_circle.png'
+        });
+
+        var yellowCircle = L.icon({
+            iconUrl: 'leaflet/images/yellow_circle.png'
+        });
+
+        var purpleCircle = L.icon({
+            iconUrl: 'leaflet/images/purple_circle.png'
+        });
+
+        //Creating variables for the markers in the map. These are added manually to give an example of how the buttons that select certain types of markers (aid, development, etc. work)
+    	var M1 = L.marker([10.055, 37.792], {icon: purpleCircle}).bindPopup("Marker 1"),
+    		M2 = L.marker([39.232, 31.289], {icon: purpleCircle}).bindPopup("Marker 2"),
+    		M3 = L.marker([13.752, -89.121], {icon: purpleCircle}).bindPopup("Marker 3"),
+    		M4 = L.marker([-24.206, -58.535], {icon: blueCircle}).bindPopup("Marker 4"),
+    		M5 = L.marker([47.040, 99.140], {icon: blueCircle}).bindPopup("Marker 5");
+            M6 = L.marker([10.123, 20.123], {icon: redCircle}).bindPopup("Marker 6");
+            M7 = L.marker([0, 0], {icon: greenCircle}).bindPopup("Marker 7");
+
+        var markers = [M1, M2, M3, M4, M5, M6, M7]
+
 
         var political = L.layerGroup([M1, M2, M3]),
-        	economic = L.layerGroup([M4, M5]);
+            economic = L.layerGroup([M4, M5]);
+            aid = L.layerGroup([M6]);
+            environment = L.layerGroup([M7]);
+            hr = L.layerGroup([]);
 
-        var stories = {
-        	"political": political,
-        	"economic": economic
-        };
+        attachHover(markers);
+
+        //Creates teh map variable and initial view
+        var map = L.map('map', {zoomControl: false}).setView([33.578, 3.515], 2);
         
         var southWest = L.latLng(40.712, -74.227),
     		northEast = L.latLng(40.774, -74.125),
     		bounds = L.latLngBounds(southWest, northEast);
 
+        //var zoomedOut = function() {
+            //map.fitBounds(bounds);
+        //    alert("zoomed out!");
+        //}
+
+        //Styling for country layer
     	var countryStyle = {
-    		'color': 'white',
-    		'weight': 2,
+    		'color': '#000',
+    		'weight': 1,
     		'opacity': 0.6,
     		'fillColor': '#404040',
-    		'fillOpacity': .8
+    		'fillOpacity': 1
 		};
 
-		var info = L.control();
-
-		info.onAdd = function (map) {
-		    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-		    this.update();
-		    return this._div;
-		};
-
-		info.update = function (props) {
-    		this._div.innerHTML = (props ?
-        	'<h4>' + props.SOVEREIGNT + '</h4>'
-        	: 'Hover over a country');
-		};
-
+        //Creates the country data layer
 		var geojson;
 
-		function highlightFeature(e) {
-    		var layer = e.target;
+        //Base map layer
+		var Stamen_Toner = L.tileLayer('http://{s}.tile.stamen.com/toner-background/{z}/{x}/{y}.png', {
+                attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+                subdomains: 'abcd',
+                subdomains: 'abcd',
+                minZoom: 0,
+                maxZoom: 20
+		  }).addTo(map)
 
-    		layer.setStyle({
-        		weight: 3,
-        		color: '#666',
-        		dashArray: '',
-        		fillColor: 'white',
-        		fillOpacity: 0.7,
-    		});
-    		if (!L.Browser.ie && !L.Browser.opera) {
-        		layer.bringToFront();
-    		}
-    		info.update(layer.feature.properties);
-		}
-
-    	function resetHighlight(e) {
-		    geojson.resetStyle(e.target);
-		    info.update();
-		}
-
-		function zoomToFeature(e) {
-		    map.fitBounds(e.target.getBounds());
-		}
-
-		function onEachFeature(feature, layer) {
-    		layer.on({
-        		mouseover: highlightFeature,
-        		mouseout: resetHighlight,
-        		click: zoomToFeature
-    		});
-		}
-
-		var Stamen_Toner = L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', {
-			attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-			subdomains: 'abcd',
-			minZoom: 0,
-			maxZoom: 20
-		}).addTo(map)
-
-		geojson = L.geoJson(countries, {
+		//Adds interactive features to the country layer
+        geojson = L.geoJson(countries, {
     		style: countryStyle,
     		onEachFeature: onEachFeature
 		}).addTo(map);
 
-		L.control.layers(stories).addTo(map);
+        //Adds markers to the map
+        map.addLayer(economic);
+        map.addLayer(political);
+        map.addLayer(aid);
+        map.addLayer(environment);
 
+        //Adds controls to the map
+        //zoomOut is not currently interactive. The div exists but the map does not zoom out when the div is clicked
 		info.addTo(map);
+        zoomOut.addTo(map);
 
+        //disables dragging and zooming
 		map.dragging.disable();
+        map.touchZoom.disable();
+        map.doubleClickZoom.disable();
+        map.scrollWheelZoom.disable();
 
     </script>
 </body>
