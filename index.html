@@ -11,6 +11,7 @@
     <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
     <script type="text/javascript" src="countries.js"></script>
     <script type="text/javascript" scr="country-flags.js"></script>
+    <script type="text/javascript" src="Leaflet.EasyButton/easy-button.js"></script>
 </head>
 <body>
     <div id="layerToggle">
@@ -32,7 +33,7 @@
                 <input class="checkbox" type="checkbox" name="political" onclick="removePolit()">
             </label>
             <label class="toggle" id="seeAll">SELECT ALL STORIES
-                <input class="checkbox" type="submit" name="see_all" onclick="zoomOut()">
+                <input class="checkbox" type="checkbox" name="see_all" onclick="toggle()">
             </label>
         </form>
     </div>
@@ -77,11 +78,6 @@
             aid = L.layerGroup([M6]);
             environment = L.layerGroup([M7]);
             hr = L.layerGroup([]);
-
-        attachHover(markers);
-
-        //Creates teh map variable and initial view
-        var map = L.map('map', {zoomControl: false}).setView([33.578, 3.515], 2);
         
         var southWest = L.latLng(40.712, -74.227),
     		northEast = L.latLng(40.774, -74.125),
@@ -91,6 +87,8 @@
             //map.fitBounds(bounds);
         //    alert("zoomed out!");
         //}
+
+
 
         //Styling for country layer
     	var countryStyle = {
@@ -104,13 +102,17 @@
         //Creates the country data layer
 		var geojson;
 
+        //Creates the map variable and initial view
+        var map = L.map('map', {zoomControl: false}).setView([33.578, 3.515], 2);
+
         //Base map layer
 		var Stamen_Toner = L.tileLayer('http://{s}.tile.stamen.com/toner-background/{z}/{x}/{y}.png', {
                 attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
                 subdomains: 'abcd',
                 subdomains: 'abcd',
                 minZoom: 0,
-                maxZoom: 20
+                maxZoom: 20,
+                noWrap: true
 		  }).addTo(map)
 
 		//Adds interactive features to the country layer
@@ -124,17 +126,20 @@
         map.addLayer(political);
         map.addLayer(aid);
         map.addLayer(environment);
+        attachHover(markers);
 
         //Adds controls to the map
         //zoomOut is not currently interactive. The div exists but the map does not zoom out when the div is clicked
 		info.addTo(map);
-        zoomOut.addTo(map);
+        //zoomOut.addTo(map);
+        L.easyButton('fa-compass', function() {map.setView([33.578, 3.515], 2)}, 'Zoom Out!');
 
         //disables dragging and zooming
 		map.dragging.disable();
         map.touchZoom.disable();
         map.doubleClickZoom.disable();
         map.scrollWheelZoom.disable();
+
 
     </script>
 </body>

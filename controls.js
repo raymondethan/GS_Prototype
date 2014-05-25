@@ -12,11 +12,9 @@
         	: 'Hover over a country');
 		};
 
-       var zoomOut = L.control({
-        //    'onclick': zoomedOut()
-        });
+       var zoomOut = L.control();
 
-        zoomOut.onAdd = function (map) {
+       zoomOut.onAdd = function (map) {
             this._div = L.DomUtil.create('div', 'zoomOut');
             return this._div;
         }

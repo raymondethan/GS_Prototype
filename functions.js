@@ -97,3 +97,10 @@
                 addHover(markers[i]);
             }
         }
+
+        function toggle() {
+            checkboxes = document.getElementsByClassName('checkbox');
+            for(var i=0; i<checkboxes.length; i++) {
+                checkboxes[i].setAttribute('checked', false);
+            }
+        }
