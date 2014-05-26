@@ -67,13 +67,11 @@ label {
         -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
     border-radius: 8px;
-    border: 2px solid #000000;
-    float: right;
+    display: inline;
 }
 
 .checkbox {
     opacity: 0;
-    position: relative;
 }
 
 #aidLabel {
@@ -103,7 +101,6 @@ label {
 
 .leaflet-bar {
     content: "Zoom Out";
-
     position: absolute;
     background-position: 50% 50%;
     background-repeat: no-repeat;
