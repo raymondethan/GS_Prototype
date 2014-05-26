@@ -98,9 +98,19 @@
             }
         }
 
-        function toggle() {
-            checkboxes = document.getElementsByClassName('checkbox');
-            for(var i=0; i<checkboxes.length; i++) {
-                checkboxes[i].setAttribute('checked', false);
+        function toggle(formname) {
+            var checkboxes = new Array(); 
+            checkboxes = document[formname].getElementsByTagName('input');
+ 
+            for (var i=0; i<checkboxes.length; i++)  {
+                if (checkboxes[i].type == 'checkbox' && checkboxes[i].checked)   {
+                    checkboxes[i].click();
+                }
+            }
+        }
+
+        function addOverlap(markers) {
+            for (var i = 0; i<markers.length; i++) {
+                oms.addMarker(markers[i]);
             }
         }
