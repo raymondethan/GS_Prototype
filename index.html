@@ -17,7 +17,12 @@
 <body>
     <div id="layerToggle">
         <form name="switches">
-            <label>SELECT STORIES ABOUT</label>
+            <img src="leaflet/images/logo.png" alt="Global Stories Logo">
+            <label class="toggle" id="see_all1">SEE ALL STORIES
+                <input class="checkbox" type="checkbox" name="see_all1" onclick="toggle('switches')">
+            </label>
+            <div class="divider"></div>
+            <label class="toggle" id="selectLabel">SELECT STORIES ABOUT</label>
             <label class="toggle" id="aidLabel">AID
                 <input class="checkbox" type="checkbox" name="aid" onclick="removeAid()">
             </label>
@@ -33,8 +38,8 @@
             <label class = "toggle" id="polit">POLITICS & SOCIETY
                 <input class="checkbox" type="checkbox" name="political" onclick="removePolit()">
             </label>
-            <label class="toggle" id="seeAll">SELECT ALL STORIES
-                <input class="checkbox" type="checkbox" name="see_all" onclick="toggle('switches');">
+            <label class="toggle" id="seeAll">SEE ALL STORIES
+                <input class="checkbox" type="checkbox" name="see_all2" onclick="toggle('switches');">
             </label>
         </form>
     </div>

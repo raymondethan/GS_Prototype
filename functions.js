@@ -1,11 +1,11 @@
         function removeAid() {
             if (document.switches.aid.checked) {
                 map.removeLayer(aid);
-                aidLabel.style.backgroundColor = "#303030";
+                aidLabel.id = 'aidOff';
             }
             else {
                 map.addLayer(aid);
-                aidLabel.style.backgroundColor = '#FF3030';
+                aidOff.id = 'aidLabel';
             }
         }
 
@@ -13,44 +13,44 @@
         {
             if (document.switches.economic.checked) {
                 map.removeLayer(economic);
-                econ.style.backgroundColor = '#303030';
+                econ.id = 'econOff';
             }
             else {
                 map.addLayer(economic);
-                econ.style.backgroundColor = '#3366FF';
+                econOff.id = 'econ';
             }
         }
 
         function removeEnviro() {
             if (document.switches.environment.checked) {
                 map.removeLayer(environment);
-                enviro.style.backgroundColor = '#303030';
+                enviro.id = 'enviroOff';
             }
             else {
                 map.addLayer(environment);
-                enviro.style.backgroundColor = '#00CC00';
+                enviroOff.id = 'enviro';
             }
         }
 
         function removeHR() {
             if (document.switches.hr.checked) {
                 map.removeLayer(hr);
-                human_rights.style.backgroundColor = '#303030';
+                human_rights.id = 'human_rightsOff';
             }
             else {
                 map.addLayer(hr);
-                human_rights.style.backgroundColor = '#FFCC00';      
+                human_rightsOff.id = 'human_rights';      
             }
         }
 
         function removePolit() {
             if (document.switches.political.checked) {
                 map.removeLayer(political);
-                polit.style.backgroundColor = '#303030';
+                polit.id = 'politOff';
             }
             else {
                 map.addLayer(political);
-                polit.style.backgroundColor = '#990099';
+                politOff.id = 'polit';
             }
         }
 

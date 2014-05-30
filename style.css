@@ -35,33 +35,34 @@ label {
 }
 
 #layerToggle {
-    float: right;
-    display: block;
-    width: 80%;
-    background-color: #000;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: small;
-    border-radius: 3px;
-    border: 2px solid #282828;
-    -moz-box-shadow:
-        0px 0px 3px rgba(000,000,000,0.5),
-        inset 0px 0px 1px rgba(255,255,255,0.7);
-    -webkit-box-shadow:
-        0px 0px 3px rgba(000,000,000,0.5),
-        inset 0px 0px 1px rgba(255,255,255,0.7);
-    box-shadow:
-        0px 0px 3px rgba(000,000,000,0.5),
-        inset 0px 0px 1px rgba(255,255,255,0.7);
-    text-shadow:
-        0px -2px 0px rgba(000,000,000,0.4),
-        0px 1px 0px rgba(255,255,255,0.3);
     white-space: nowrap;
+    float: right;
+    display: inline-block;
+    width: 100%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-right: 5px;
+    padding-left: 10px;
+    text-align: center;
+    font-size: small;
+    color: #ffffff;
+    background: -moz-linear-gradient(
+        top,
+        #363636 0%,
+        #000000 50%,
+        #363636);
+    background: -webkit-gradient(
+        linear, left top, left bottom,
+        from(#363636),
+        color-stop(0.50, #000000),
+        to(#363636));
+    margin: auto;
+    overflow: hidden;
 }
 
 .toggle {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 11px;
+    font-size: 10px;
     color: #ffffff;
     padding: 4px 5px;
         -moz-border-radius: 8px;
@@ -74,28 +75,198 @@ label {
     opacity: 0;
 }
 
+.divider {
+    width: 3%;
+    height: auto;
+    display: inline-block;
+}
+
+#see_all1 {
+    font-size: xx-small;
+    padding-right: 0px;
+}
+
+#selectLabel {
+    font-size: xx-small;
+}
+
 #aidLabel {
-    background-color: #FF3030;
+    color: #ffffff;
+    padding: 6px 30px;
+    background: -moz-linear-gradient(
+        top,
+        #f57070 0%,
+        #ff7373 25%,
+        #9e0f0f 75%,
+        #e02f2f);
+    background: -webkit-gradient(
+        linear, left top, left bottom,
+        from(#f57070),
+        color-stop(0.25, #ff7373),
+        color-stop(0.75, #9e0f0f),
+        to(#e02f2f));
+}
+
+#aidOff {
+    color: #ffffff;
+    text-decoration: #000;
+    padding: 6px 30px;
+    background: -moz-linear-gradient(
+        top,
+        #6b6b6b 0%,
+        #3d3c3c 25%,
+        #080101 75%,
+        #574b4b);
+    background: -webkit-gradient(
+        linear, left top, left bottom,
+        from(#6b6b6b),
+        color-stop(0.25, #3d3c3c),
+        color-stop(0.75, #080101),
+        to(#574b4b));
+}
+
+#econ {
+    color: #ffffff;
+    padding: 6px 9px;
+    background: -moz-linear-gradient(
+        top,
+        #5691f7 0%,
+        #67a7f5 25%,
+        #0d30e0 71%,
+        #567df5);
+    background: -webkit-gradient(
+        linear, left top, left bottom,
+        from(#5691f7),
+        color-stop(0.25, #67a7f5),
+        color-stop(0.71, #0d30e0),
+        to(#567df5));
+}
+
+#econOff {
+    color: #ffffff;
+    text-decoration: #000;
+    padding: 6px 9px;
+    background: -moz-linear-gradient(
+        top,
+        #6b6b6b 0%,
+        #3d3c3c 25%,
+        #080101 75%,
+        #574b4b);
+    background: -webkit-gradient(
+        linear, left top, left bottom,
+        from(#6b6b6b),
+        color-stop(0.25, #3d3c3c),
+        color-stop(0.75, #080101),
+        to(#574b4b));
 }
 
 
 #enviro {
-    background-color: #00CC00;
+    color: #ffffff;
+    padding: 6px 10px;
+    background: -moz-linear-gradient(
+        top,
+        #00ff00 0%,
+        #59eb6a 25%,
+        #3b9126 71%,
+        #5cc242);
+    background: -webkit-gradient(
+        linear, left top, left bottom,
+        from(#00ff00),
+        color-stop(0.25, #59eb6a),
+        color-stop(0.71, #3b9126),
+        to(#5cc242));
 }
 
-#econ {
-    background-color: #3366FF;
+#enviroOff {
+    color: #ffffff;
+    text-decoration: #000;
+    padding: 6px 10px;
+    background: -moz-linear-gradient(
+        top,
+        #6b6b6b 0%,
+        #3d3c3c 25%,
+        #080101 75%,
+        #574b4b);
+    background: -webkit-gradient(
+        linear, left top, left bottom,
+        from(#6b6b6b),
+        color-stop(0.25, #3d3c3c),
+        color-stop(0.75, #080101),
+        to(#574b4b));
 }
 
 #human_rights {
-    background-color: #FFCC00;
+    color: #ffffff;
+    padding: 6px 9px;
+    background: -moz-linear-gradient(
+        top,
+        #ffff00 0%,
+        #d0db30 25%,
+        #ccb310 71%,
+        #f2de00);
+    background: -webkit-gradient(
+        linear, left top, left bottom,
+        from(#ffff00),
+        color-stop(0.25, #d0db30),
+        color-stop(0.71, #ccb310),
+        to(#f2de00));
+}
+
+#human_rightsOff {
+    color: #ffffff;
+    text-decoration: #000;
+    padding: 6px 9px;
+    background: -moz-linear-gradient(
+        top,
+        #6b6b6b 0%,
+        #3d3c3c 25%,
+        #080101 75%,
+        #574b4b);
+    background: -webkit-gradient(
+        linear, left top, left bottom,
+        from(#6b6b6b),
+        color-stop(0.25, #3d3c3c),
+        color-stop(0.75, #080101),
+        to(#574b4b));
 }
 
 #polit {
-    background-color: #990099;
+    color: #ffffff;
+    padding: 6px 5px;
+    background: -moz-linear-gradient(
+        top,
+        #dd00ff 0%,
+        #8e00bd 25%,
+        #68007d 71%,
+        #c43ce6);
+    background: -webkit-gradient(
+        linear, left top, left bottom,
+        from(#dd00ff),
+        color-stop(0.25, #8e00bd),
+        color-stop(0.71, #68007d),
+        to(#c43ce6));
 }
 
-#seeAll {
+#politOff {
+    color: #ffffff;
+    text-decoration: #000;
+    padding: 6px 5px;
+    background: -moz-linear-gradient(
+        top,
+        #6b6b6b 0%,
+        #3d3c3c 25%,
+        #080101 75%,
+        #574b4b);
+    background: -webkit-gradient(
+        linear, left top, left bottom,
+        from(#6b6b6b),
+        color-stop(0.25, #3d3c3c),
+        color-stop(0.75, #080101),
+        to(#574b4b));
+}
+
+#seeAll2 {
     background-color: #404040;
 }
 
