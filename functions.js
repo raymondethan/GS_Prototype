@@ -123,7 +123,7 @@ function onLocationFound(e) {
     L.circle(e.latlng, radius).addTo(map);
 }
 
-map.on('locationfound', onLocationFound);
+
 
 function onLocationError(e) {
     alert(e.message);
