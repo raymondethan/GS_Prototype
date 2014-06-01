@@ -58,11 +58,11 @@
             var layer = e.target;
 
             layer.setStyle({
-                weight: 3,
-                color: '#666',
+                weight: 2,
+                color: 'white',
                 dashArray: '',
                 fillColor: 'white',
-                fillOpacity: 0.7,
+                fillOpacity: 1,
             });
             if (!L.Browser.ie && !L.Browser.opera) {
                 layer.bringToFront();

@@ -11,9 +11,11 @@
     <script type="text/javascript" src="controls.js"></script>
     <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
     <script type="text/javascript" src="countries.js"></script>
-    <script type="text/javascript" scr="country-flags.js"></script>
+    <script type="text/javascript" src="oceans.js"></script>
+    <script type="text/javascript" scr="country-flags.json"></script>
     <script type="text/javascript" src="Leaflet.EasyButton/easy-button.js"></script>
     <script src="oms.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
 </head>
 <body>
     <div id="layerToggle">
@@ -44,8 +46,12 @@
             </label>
         </form>
     </div>
-    <div id="map"></div>
+    <div id="map"><div id="zoomOut"></div></div>
     <script>
+
+        $.getJSON("country-flags.json", function() {
+            $.each(alert(key));
+        })
 
         //The images used for the markers
         var redCircle = L.icon({
@@ -104,12 +110,20 @@
 
         //Styling for country layer
     	var countryStyle = {
-    		'color': '#000',
-    		'weight': 1,
-    		'opacity': 0.6,
-    		'fillColor': '#404040',
+    		'color': '#28211C',
+    		'weight': 1.2,
+    		'opacity': 1,
+    		'fillColor': '#000',
     		'fillOpacity': 1
 		};
+
+        var oceanStyle = {
+            'color': '#28211C',
+            'weight': 3,
+            'opacity': 0.6,
+            'fillColor': '#28211C',
+            'fillOpacity': 1
+        };
 
         //Creates the country data layer
 		var geojson;
@@ -117,12 +131,14 @@
         //Creates the map variable and initial view
 		var map = L.map('map');
 
+        var zoomLevel = 1;
+
 L.tileLayer('http://{s}.tiles.mapbox.com/v3/MapID/997/256/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 18
 }).addTo(map);
 
-map.locate({setView: true, maxZoom: 2});
+map.locate({setView: true, maxZoom: zoomLevel});
 
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
@@ -143,6 +159,10 @@ map.on('locationerror', onLocationError);
     		onEachFeature: onEachFeature
 		}).addTo(map);
 
+        oceans = L.geoJson(oceans, {
+            style: oceanStyle
+        }).addTo(map);
+
         //Adds markers to the map
         map.addLayer(economic);
         map.addLayer(political);
@@ -158,7 +178,7 @@ map.on('locationerror', onLocationError);
         //zoomOut is not currently interactive. The div exists but the map does not zoom out when the div is clicked
 		info.addTo(map);
         //zoomOut.addTo(map);
-        L.easyButton('fa-compass', function() {map.setView([33.578, 3.515], 2)}, 'Zoom Out!');
+        L.easyButton('fa-compass', function() {map.setView([33.578, 3.515], zoomLevel)}, 'Zoom Out!');
 
         //disables dragging and zooming
 		map.dragging.disable();
