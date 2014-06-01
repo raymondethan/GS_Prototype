@@ -14,6 +14,7 @@
     <script type="text/javascript" scr="country-flags.js"></script>
     <script type="text/javascript" src="Leaflet.EasyButton/easy-button.js"></script>
     <script src="oms.min.js"></script>
+    <script src="leaflet.zoomfs.js"></script>
 </head>
 <body>
     <div id="layerToggle">
@@ -110,8 +111,20 @@
 		var geojson;
 
         //Creates the map variable and initial view
-		var map = L.map('map');
+		var map = new L.map('map', { zoomControl:false });
+		
+		//initializes a zoom control
+		var zoomFS = new L.Control.ZoomFS(); 
+		map.addControl(zoomFS);
 
+		map.on('enterFullscreen', function(){
+  		if(window.console) window.console.log('enterFullscreen');
+		});
+
+		map.on('exitFullscreen', function(){
+  		if(window.console) window.console.log('exitFullscreen');
+		});
+		
 L.tileLayer('http://{s}.tiles.mapbox.com/v3/MapID/997/256/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 18
