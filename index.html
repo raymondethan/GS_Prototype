@@ -49,7 +49,7 @@
     <div id="map"><div id="zoomOut"></div></div>
     <script>
 
-        $.getJSON("country-flags.json", function() {
+        var names = $.getJSON("country-flags.json", function() {
             $.each(alert(key));
         })
 
@@ -175,7 +175,6 @@ map.on('locationerror', onLocationError);
         addOverlap(markers);
 
         //Adds controls to the map
-        //zoomOut is not currently interactive. The div exists but the map does not zoom out when the div is clicked
 		info.addTo(map);
         //zoomOut.addTo(map);
         L.easyButton('fa-compass', function() {map.setView([33.578, 3.515], zoomLevel)}, 'Zoom Out!');

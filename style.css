@@ -8,6 +8,7 @@ html, body, #map {
 }
 
 #map {
+    position: relative;
     display: block;
     float: right;
     height: 600px;
@@ -302,6 +303,10 @@ label {
     border: 5px solid #383838;
     box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
     background-color: #202020;
+}
+
+.leaflet-control-fullscreen {
+  background-image: url(your/amazing/icon.png);
 }
 
 div.olMap {
