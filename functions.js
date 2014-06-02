@@ -58,7 +58,7 @@
             var layer = e.target;
 
             layer.setStyle({
-                weight: 2,
+                weight: 1,
                 color: 'white',
                 dashArray: '',
                 fillColor: 'white',

@@ -12,12 +12,14 @@
     <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
     <script type="text/javascript" src="countries.js"></script>
     <script type="text/javascript" src="oceans.js"></script>
-    <script type="text/javascript" scr="country-flags.json"></script>
+    <script type="text/javascript" scr="country-flags.js"></script>
     <script type="text/javascript" src="Leaflet.EasyButton/easy-button.js"></script>
     <script src="oms.min.js"></script>
+    <script type="text/javascript" src="names.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
 </head>
 <body>
+    <nav>
     <div id="layerToggle">
         <form name="switches">
             <img src="leaflet/images/logo.png" alt="Global Stories Logo">
@@ -46,12 +48,11 @@
             </label>
         </form>
     </div>
-    <div id="map"><div id="zoomOut"></div></div>
+    </nav>
+    <div id="map"></div>
+    <div id="side_bar"></div>
+    <div id="top_stories"></div>
     <script>
-
-        var names = $.getJSON("country-flags.json", function() {
-            $.each(alert(key));
-        })
 
         //The images used for the markers
         var redCircle = L.icon({
