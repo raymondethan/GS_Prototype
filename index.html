@@ -78,10 +78,18 @@
         });
 
         //Creating variables for the markers in the map. These are added manually to give an example of how the buttons that select certain types of markers (aid, development, etc. work)
-    	var M1 = L.marker([10.055, 37.792], {icon: purpleCircle}).bindPopup("Marker 1"),
-    		M2 = L.marker([39.232, 31.289], {icon: purpleCircle}).bindPopup("Marker 2"),
-    		M3 = L.marker([13.752, -89.121], {icon: purpleCircle}).bindPopup("Marker 3"),
-    		M4 = L.marker([-24.206, -58.535], {icon: blueCircle}).bindPopup("Marker 4"),
+    	var divNode = document.createElement('DIV');
+            divNode.innerHTML = '<p><img src="images/1.jpg" /></p>' + "Marker 1";
+            M1 = L.marker([10.055, 37.792], {icon: purpleCircle}).bindPopup(divNode),
+            divNode2 = document.createElement('DIV');
+            divNode2.innerHTML = '<p><img src="images/2.jpg" />\nMarker 2</p>';
+    		M2 = L.marker([39.232, 31.289], {icon: purpleCircle}).bindPopup(divNode2),
+            divNode3 = document.createElement('DIV');
+            divNode3.innerHTML = '<p><img src="images/3.jpg" />\nMarker 3</p>';
+    		M3 = L.marker([13.752, -89.121], {icon: purpleCircle}).bindPopup(divNode3),
+            divNode4 = document.createElement('DIV');
+            divNode4.innerHTML = '<p><img src="images/4.jpg" />\nMarker 4</p>';
+    		M4 = L.marker([-24.206, -58.535], {icon: blueCircle}).bindPopup(divNode4),
     		M5 = L.marker([47.040, 99.140], {icon: blueCircle}).bindPopup("Marker 5");
             M6 = L.marker([10.123, 20.123], {icon: redCircle}).bindPopup("Marker 6");
             M7 = L.marker([0, 0], {icon: greenCircle}).bindPopup("Marker 7");
