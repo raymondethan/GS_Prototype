@@ -21,12 +21,6 @@
             return this._div;
         }
 
-  function getCode(file, country) {
-    $.get(file, function() {
-      return names["Canada"];
-    });
-  }
-
         
 //possible fix to the zoomOut method
 //_onDoubleClick: function (e) {

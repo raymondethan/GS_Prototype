@@ -9,11 +9,12 @@ html, body, #map {
 
 #map {
     position: relative;
-    display: block;
+    display: inline-block;
     float: right;
     height: 520px;
     width: 75%;
     background-color: #28211C;
+    overflow: hidden;
 }
 
 #side_bar {
@@ -26,10 +27,11 @@ html, body, #map {
 
 #top_stories {
     width: 100%;
-    height: 200px;
+    height: 160px;
     background-color: #000;
     position: absolute;
     bottom: 0;
+    display: inline;
 }
 
 .info {
@@ -314,7 +316,8 @@ label {
     height: 50px;
     float: right;
     margin-right: 10px;
-    margin-top: 135px; 
+    margin-top: 135px;
+    position: fixed; 
 }
 
 .leaflet-bar {
@@ -330,6 +333,7 @@ label {
     border: 5px solid #383838;
     box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
     background-color: #202020;
+    background: #fff url(data:image/gif;base64,R0lGODlhGAAYAOZdACIiIiMjIy8vLyoqKsPDwzMzM0xMTDQ0NGlpaUtLS+Tk5J2dnXd3d7m5ueDg4GdnZykpKSYmJkpKSre3t09PT5eXl4KCgrCwsHNzc1lZWWhoaCcnJ5ubm3R0dFJSUp+fn1RUVJqamoODg8TExD09PYqKijo6OpGRkV1dXVFRUUNDQ3FxcZmZmYCAgEVFRXV1dSgoKIaGhlxcXEdHR5SUlMvLy5iYmNXV1VNTU7GxsbOzs9ra2jExMdbW1isrKywsLFtbW6qqqnh4eGpqat3d3XBwcI2NjWRkZLi4uL+/vyUlJZycnNvb297e3r6+vvf392VlZcbGxq2trWFhYWZmZszMzE5OTsDAwG1tbZWVlZaWlqGhod/f3////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAF0ALAAAAAAYABgAQAf/gF2Cg10KLFASAgISVBWEhFkAklaPlT0Rkpk2XRCZnj4oEwQknp4Dgw0BAFqPLZ0ZFJ4BDYICpSWEURNBpZ4Cgx+qvQAmgjs4AAEflV1XBckgShkJEQeeBUmPLwAezF0jKTqDGJkdXQaZLt5dTj/DCRq9MDldHgAbw5kPhdb5AAkXBpXAd0ABMyED8g1gsE6QAwwJhw3oQMQbB1UyRlSpQeDJAiClAoQg5OCZkUrPAGzpImJIpgJNBHWKIMUbF0FMGsTIdOpBphUNb5jo9cBWJgveLOQTgM6TihOCjkgq4s9AiGEUHFyoMMUfAA5dGHjFooEHDQSkMjEUREBYPiSDHEQkI1CJQL9SM5aAkHSAbsMuCxAYUGQAwQJvgQAAOw==) no-repeat scroll center center;
 }
 
 .leaflet-control-fullscreen {
@@ -851,4 +855,48 @@ a.olControlZoomOut {
 /* override any max-width image settings (e.g. bootstrap.css) */
 img.olTileImage {
     max-width: none;
+}
+
+.leaflet-control-minimap {
+    border:solid #28211C 4px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+    border-radius: 100px;
+    background: #f8f8f9;
+    transition: all .2s;
+}
+
+.leaflet-control-minimap a {
+    background-color: #28211C;
+    background-repeat: no-repeat;
+    z-index: 99999;
+    transition: all .2s;
+    border-radius: 3px 0px 0px 0px;
+}
+
+.leaflet-control-minimap a.minimized {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    border-radius: 0px;
+}
+
+.leaflet-control-minimap-toggle-display {
+    background-image: url("Leaflet-MiniMap/src/images/toggle.png");
+    height: 19px;
+    width: 19px;
+    position: absolute;
+    bottom: 0;
+    right: 0; 
+}
+
+/* Old IE */
+.leaflet-oldie .leaflet-control-minimap {
+    border: 1px solid #999;
+}
+
+.leaflet-oldie .leaflet-control-minimap a {
+    background-color: #fff;
+}
+
+.leaflet-oldie .leaflet-control-minimap a.minimized {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
 }

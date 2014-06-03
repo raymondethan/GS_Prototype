@@ -126,7 +126,7 @@ function onLocationFound(e) {
 
 
 function onLocationError(e) {
-    alert(e.message);
+    //alert(e.message);
 }
 
 
