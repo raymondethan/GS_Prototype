@@ -53,7 +53,7 @@
     </nav>
     <div id="map"></div>
     <div id="side_bar"></div>
-    <div id="top_stories"></div>
+    <!--<div id="top_stories"></div>-->
     <script>
 
         //The images used for the markers
@@ -113,7 +113,7 @@
 
         //Styling for country layer
     	var countryStyle = {
-    		'color': '#28211C',
+    		'color': '#001A33',
     		'weight': 1.2,
     		'opacity': 1,
     		'fillColor': '#000',
@@ -121,10 +121,10 @@
 		};
 
         var oceanStyle = {
-            'color': '#28211C',
+            'color': '#001429',
             'weight': 3,
             'opacity': 0.6,
-            'fillColor': '#28211C',
+            'fillColor': '#001429',
             'fillOpacity': 1
         };
 
@@ -193,11 +193,11 @@
         var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 18});
 
 
-        map.setView(new L.LatLng(33.578, 5.515), 1);
+        map.setView(new L.LatLng(-3.578, 3.515), 1);
         
         //Plugin magic goes here! Note that you cannot use the same layer object again, as that will confuse the two map controls
         var osm2 = new L.TileLayer(osmUrl, {minZoom: 0, maxZoom: 13, noWrap: true});
-        var miniMap = new L.Control.MiniMap(osm2, { toggleDisplay: true, position: 'bottomleft', width: 200, height: 200, aimingRectOptions: {color: '#28211C', fillColor: '#28211C', fillOpacity: .7}}).addTo(map);
+        var miniMap = new L.Control.MiniMap(osm2, { toggleDisplay: false, position: 'bottomleft', width: 200, height: 200, aimingRectOptions: {color: '#28211C', fillColor: '#28211C', fillOpacity: .7}}).addTo(map);
 
     </script>
 </body>
