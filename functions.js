@@ -87,6 +87,16 @@
             });
         }
 
+        function zoomToOriginal(e) {
+            map.setView([-3.578, 3.515], 1);
+        }
+
+        function onOcean(feature, layer) {
+            layer.on({
+                click: zoomToOriginal
+            });
+        }
+
         function addHover(marker) {
             marker.on('mouseover', function(){marker.openPopup();});
             marker.on('mouseout', function(){marker.closePopup();});

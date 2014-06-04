@@ -161,7 +161,8 @@
 		}).addTo(map);
 
         oceans = L.geoJson(oceans, {
-            style: oceanStyle
+            style: oceanStyle,
+            onEachFeature: onOcean
         }).addTo(map);
 
         //Adds markers to the map
@@ -178,7 +179,7 @@
         //Adds controls to the map
 		info.addTo(map);
         //zoomOut.addTo(map);
-        L.easyButton('fa-compass', function() {map.setView([33.578, 3.515], zoomLevel)}, 'Zoom Out!');
+        L.easyButton('fa-compass', function() {map.setView([-3.578, 3.515], zoomLevel)}, 'Zoom Out!');
 
         //map.addControl(new L.Control.ZoomMin());
 
@@ -197,7 +198,7 @@
         
         //Plugin magic goes here! Note that you cannot use the same layer object again, as that will confuse the two map controls
         var osm2 = new L.TileLayer(osmUrl, {minZoom: 0, maxZoom: 13, noWrap: true});
-        var miniMap = new L.Control.MiniMap(osm2, { toggleDisplay: false, position: 'bottomleft', width: 200, height: 200, aimingRectOptions: {color: '#28211C', fillColor: '#28211C', fillOpacity: .7}}).addTo(map);
+        var miniMap = new L.Control.MiniMap(osm2, { toggleDisplay: false, position: 'bottomleft', width: 200, height: 200, aimingRectOptions: {color: '#001429', fillColor: '#001429', fillOpacity: .5}}).addTo(map);
 
     </script>
 </body>
