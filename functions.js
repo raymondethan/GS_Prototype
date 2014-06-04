@@ -97,14 +97,18 @@
             });
         }
 
-        function addHover(marker) {
-            marker.on('mouseover', function(){marker.openPopup();});
-            marker.on('mouseout', function(){marker.closePopup();});
+        var redVideo = L.icon({
+            iconUrl: 'images/red_video.png'
+        });
+
+        function addHover(marker, type1, type2) {
+            marker.on('mouseover', function(){marker.setIcon(type1), marker.openPopup();});
+            marker.on('mouseout', function(){marker.setIcon(type2), marker.closePopup();});
         }
 
-        function attachHover(markers) {
+        function attachHover(markers, type1, type2) {
             for (var i = 0; i < markers.length; i++) {
-                addHover(markers[i]);
+                addHover(markers[i], type1, type2);
             }
         }
 

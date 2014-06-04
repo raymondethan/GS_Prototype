@@ -15,10 +15,8 @@
     <script type="text/javascript" scr="country-flags.js"></script>
     <script type="text/javascript" src="Leaflet.EasyButton/easy-button.js"></script>
     <script src="oms.min.js"></script>
-    <script type="text/javascript" src="names.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
     <script type="text/javascript" src="Leaflet-MiniMap/src/Control.MiniMap.js"></script>
-    <script type="text/javascript" src="leaflet-zoom-min/L.Control.ZoomMin.js"></script>
 </head>
 <body>
     <nav>
@@ -57,64 +55,90 @@
     <script>
 
         //The images used for the markers
-        var redCircle = L.icon({
-            iconUrl: 'leaflet/images/red_circle.png'
+        var redDot = L.icon({
+            iconUrl: 'images/red_dot.png'
         });
 
-        var greenCircle = L.icon({
-            iconUrl: 'leaflet/images/green_circle.png'
+        var redVideo = L.icon({
+            iconUrl: 'images/red_video.png'
         });
 
-        var blueCircle = L.icon({
-            iconUrl: 'leaflet/images/blue_circle.png'
+        var greenDot = L.icon({
+            iconUrl: 'images/green_dot.png'
         });
 
-        var yellowCircle = L.icon({
-            iconUrl: 'leaflet/images/yellow_circle.png'
+         var greenInteractive = L.icon({
+            iconUrl: 'images/greenInteractive.png'
         });
 
-        var purpleCircle = L.icon({
-            iconUrl: 'leaflet/images/purple_circle.png'
+        var blueDot = L.icon({
+            iconUrl: 'images/blue_dot.png'
+        });
+
+        var bluePhoto = L.icon({
+            iconUrl: 'images/bluePhoto.png'
+        });
+
+        var yellowDot = L.icon({
+            iconUrl: 'images/yellow_dot.png'
+        });
+
+        var yellowAudio = L.icon({
+            iconUrl: 'images/yellowAudio.png'
+        });
+
+        var purpleDot = L.icon({
+            iconUrl: 'images/purple_dot.png'
+        });
+
+        var purpleVideo = L.icon({
+            iconUrl: 'images/purpleVideo.png'
         });
 
         //Creating variables for the markers in the map. These are added manually to give an example of how the buttons that select certain types of markers (aid, development, etc. work)
     	var divNode = document.createElement('DIV');
             divNode.innerHTML = '<p><img src="images/1.jpg" /></p>' + "Marker 1";
-            M1 = L.marker([10.055, 37.792], {icon: purpleCircle}).bindPopup(divNode),
+            M1 = L.marker([10.055, 37.792], {icon: purpleDot}).bindPopup(divNode),
             divNode2 = document.createElement('DIV');
             divNode2.innerHTML = '<p><img src="images/2.jpg" />\nMarker 2</p>';
-    		M2 = L.marker([39.232, 31.289], {icon: purpleCircle}).bindPopup(divNode2),
+    		M2 = L.marker([39.232, 31.289], {icon: purpleDot}).bindPopup(divNode2),
             divNode3 = document.createElement('DIV');
             divNode3.innerHTML = '<p><img src="images/3.jpg" />\nMarker 3</p>';
-    		M3 = L.marker([13.752, -89.121], {icon: purpleCircle}).bindPopup(divNode3),
+    		M3 = L.marker([13.752, -89.121], {icon: purpleDot}).bindPopup(divNode3),
             divNode4 = document.createElement('DIV');
             divNode4.innerHTML = '<p><img src="images/4.jpg" />\nMarker 4</p>';
-    		M4 = L.marker([-24.206, -58.535], {icon: blueCircle}).bindPopup(divNode4),
-    		M5 = L.marker([47.040, 99.140], {icon: blueCircle}).bindPopup("Marker 5");
-            M6 = L.marker([10.123, 20.123], {icon: redCircle}).bindPopup("Marker 6");
-            M7 = L.marker([0, 0], {icon: greenCircle}).bindPopup("Marker 7");
-            M8 = L.marker([13.752, -89.121], {icon: purpleCircle}).bindPopup("Marker 8"),
-            M9 = L.marker([13.752, -89.121], {icon: purpleCircle}).bindPopup("Marker 9"),
-            M10 = L.marker([10.123, 20.123], {icon: greenCircle}).bindPopup("Marker 10");
-            M11 = L.marker([10.123, 20.123], {icon: yellowCircle}).bindPopup("Marker 11");
-            M12 = L.marker([10.123, 20.123], {icon: yellowCircle}).bindPopup("Marker 12");
-            M13 = L.marker([10.123, 20.123], {icon: yellowCircle}).bindPopup("Marker 13");
-            M14 = L.marker([10.123, 20.123], {icon: yellowCircle}).bindPopup("Marker 14");
-            M15 = L.marker([10.123, 20.123], {icon: yellowCircle}).bindPopup("Marker 15");
-            M16 = L.marker([10.123, 20.123], {icon: yellowCircle}).bindPopup("Marker 16");
-            M17 = L.marker([10.123, 20.123], {icon: yellowCircle}).bindPopup("Marker 17");
-            M18 = L.marker([10.123, 20.123], {icon: yellowCircle}).bindPopup("Marker 18");
-            M19 = L.marker([10.123, 20.123], {icon: yellowCircle}).bindPopup("Marker 19");
+    		M4 = L.marker([-24.206, -58.535], {icon: blueDot}).bindPopup(divNode4),
+    		M5 = L.marker([47.040, 99.140], {icon: blueDot}).bindPopup("Marker 5");
+            M6 = L.marker([10.123, 20.123], {icon: redDot}).bindPopup("Marker 6");
+            M7 = L.marker([0, 0], {icon: greenDot}).bindPopup("Marker 7");
+            M8 = L.marker([13.752, -89.121], {icon: purpleDot}).bindPopup("Marker 8"),
+            M9 = L.marker([13.752, -89.121], {icon: purpleDot}).bindPopup("Marker 9"),
+            M10 = L.marker([10.123, 20.123], {icon: greenDot}).bindPopup("Marker 10");
+            M11 = L.marker([10.123, 20.123], {icon: yellowDot}).bindPopup("Marker 11");
+            M12 = L.marker([10.123, 20.123], {icon: yellowDot}).bindPopup("Marker 12");
+            M13 = L.marker([10.123, 20.123], {icon: yellowDot}).bindPopup("Marker 13");
+            M14 = L.marker([10.123, 20.123], {icon: yellowDot}).bindPopup("Marker 14");
+            M15 = L.marker([10.123, 20.123], {icon: yellowDot}).bindPopup("Marker 15");
+            M16 = L.marker([10.123, 20.123], {icon: yellowDot}).bindPopup("Marker 16");
+            M17 = L.marker([10.123, 20.123], {icon: yellowDot}).bindPopup("Marker 17");
+            M18 = L.marker([10.123, 20.123], {icon: yellowDot}).bindPopup("Marker 18");
+            M19 = L.marker([10.123, 20.123], {icon: yellowDot}).bindPopup("Marker 19");
 
 
         var markers = [M1, M2, M3, M4, M5, M6, M7, M8, M9, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19]
 
-        var political = L.layerGroup([M1, M2, M3]),
-            economic = L.layerGroup([M4, M5]);
-            aid = L.layerGroup([M6]);
-            environment = L.layerGroup([M7, M8, M9, M10]);
-            hr = L.layerGroup([M11, M12, M13, M14, M15, M16, M17, M18, M19]);
-        
+        var polit_marks = [M1, M2, M3, M8, M9];
+            econ_marks = [M4, M5];
+            aid_marks = [M6];
+            enviro_marks = [M7, M10];
+            hr_marks = [M11, M12, M13, M14, M15, M16, M17, M18, M19];
+
+        var political = L.layerGroup(polit_marks);
+            economic = L.layerGroup(econ_marks);
+            aid = L.layerGroup(aid_marks);
+            environment = L.layerGroup(enviro_marks);
+            hr = L.layerGroup(hr_marks);
+
         var southWest = L.latLng(40.712, -74.227),
     		northEast = L.latLng(40.774, -74.125),
     		bounds = L.latLngBounds(southWest, northEast);
@@ -129,10 +153,10 @@
 		};
 
         var oceanStyle = {
-            'color': '#001429',
+            'color': '#001A33',
             'weight': 3,
             'opacity': 0.6,
-            'fillColor': '#001429',
+            'fillColor': '#001A33',
             'fillOpacity': 1
         };
 
@@ -179,7 +203,11 @@
         map.addLayer(aid);
         map.addLayer(environment);
         map.addLayer(hr);
-        attachHover(markers);
+        attachHover(aid_marks, redVideo, redDot);
+        attachHover(econ_marks, bluePhoto, blueDot);
+        attachHover(polit_marks, purpleVideo, purpleDot);
+        attachHover(hr_marks, yellowAudio, yellowDot);
+        attachHover(enviro_marks, greenInteractive, greenDot);
 
         var oms = new OverlappingMarkerSpiderfier(map);
         addOverlap(markers);
