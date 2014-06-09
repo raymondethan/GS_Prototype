@@ -102,6 +102,10 @@
         });
 
         function addHover(marker, type1, type2) {
+            //var coords = marker.getLatLng();
+            //var new_coords = [marker.getLatLng().lat + 4, marker.getLatLng().lng - 4];
+            //, marker.setLatLng(new_coords)
+            //, marker.setLatLng(coords)
             marker.on('mouseover', function(){marker.setIcon(type1), marker.openPopup();});
             marker.on('mouseout', function(){marker.setIcon(type2), marker.closePopup();});
         }

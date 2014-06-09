@@ -11,7 +11,7 @@
     <script type="text/javascript" src="functions.js"></script>
     <script type="text/javascript" src="controls.js"></script>
     <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
-    <script type="text/javascript" src="countries-simple.js"></script>
+    <script type="text/javascript" src="countries-detailed.js"></script>
     <script type="text/javascript" src="oceans.js"></script>
     <script type="text/javascript" scr="country-flags.js"></script>
     <!--<script type="text/javascript" src="Leaflet.EasyButton/easy-button.js"></script>-->
@@ -179,7 +179,7 @@
         map.on('locationerror', onLocationError);
 
         //Base map layer
-		var Stamen_Toner = L.tileLayer('http://{s}.tile.stamen.com/toner-background/{z}/{x}/{y}.png', {
+		var Stamen_Toner = L.tileLayer('http://{s}.tile.stamen.com/toner-light/{z}/{x}/{y}.png', {
                 subdomains: 'abcd',
                 subdomains: 'abcd',
                 minZoom: 0,
