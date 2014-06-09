@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="leaflet/leaflet.css" />
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
 	<script src="leaflet/leaflet.js"></script>
+    <script src="Stories_LatLng.js"></script>
     <script type="text/javascript" src="functions.js"></script>
     <script type="text/javascript" src="controls.js"></script>
     <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
@@ -197,6 +198,13 @@
             style: oceanStyle,
             onEachFeature: onOcean
         }).addTo(map);
+
+        for (var i = 0; i < Stories.length; i++) {
+            marker = new L.marker([Stories[i][0],Stories[i][1]], {icon:greenDot})
+                .bindPopup("Story Dot" + (i+1))
+                .addTo(map);
+            addHover(marker, greenInteractive, greenDot);
+        }
 
         //Adds markers to the map
         map.addLayer(economic);
