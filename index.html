@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="leaflet/leaflet.css" />
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
 	<script src="leaflet/leaflet.js"></script>
+    <script src="Stories_LatLng.js"></script>
     <script type="text/javascript" src="functions.js"></script>
     <script type="text/javascript" src="controls.js"></script>
     <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
@@ -146,7 +147,7 @@
 
         //Styling for country layer
     	var countryStyle = {
-    		'color': '#C0C0C0',
+    		'color': '#808080',
     		'weight': 1.2,
     		'opacity': 1,
     		'fillColor': '#202020',
@@ -154,10 +155,10 @@
 		};
 
         var oceanStyle = {
-            'color': '#C0C0C0',
+            'color': '#808080',
             'weight': 3,
             'opacity': 0.6,
-            'fillColor': '#C0C0C0',
+            'fillColor': '#808080',
             'fillOpacity': 1
         };
 
@@ -197,6 +198,13 @@
             style: oceanStyle,
             onEachFeature: onOcean
         }).addTo(map);
+
+        for (var i = 0; i < Stories.length; i++) {
+            marker = new L.marker([Stories[i][0],Stories[i][1]], {icon:greenDot})
+                .bindPopup("Story Dot" + (i+1))
+                .addTo(map);
+            addHover(marker, greenInteractive, greenDot);
+        }
 
         //Adds markers to the map
         map.addLayer(economic);
